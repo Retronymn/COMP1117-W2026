@@ -20,10 +20,7 @@ public class PlayerController : MonoBehaviour
         // Initialize
         rBody = GetComponent<Rigidbody2D>();
 
-        stats = new PlayerStats();
-        stats.MoveSpeed = initialSpeed;
-        stats.MaxHealth = initialHealth;
-        stats.CurrentHealth = initialHealth;
+        stats = new PlayerStats(initialSpeed, initialHealth);
     }
 
     void OnMove(InputValue value)
@@ -38,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        float velocityX = moveInput.x;
+        float velocityX = moveInput.x * stats.MoveSpeed;
 
         rBody.linearVelocity = new Vector2(velocityX, rBody.linearVelocity.y);
     }

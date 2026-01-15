@@ -19,17 +19,33 @@ public class DamageDealer : MonoBehaviour
 
         Better, but still not great
         PlayerController thePlayerControllerScript = GameObject.FindFirstObjectByType<PlayerController>();
+        thePlayerControllerScript.TakeDamage(10);
         
     }*/
+    /* public void Update()
+     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Spacebar pressed");
+        }
+     }*/
 
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Spacebar pressed");
+        }
+    }
     public void OnAttack(InputValue value)
     {
         if(value.isPressed)
         {
             if(playerController != null)
             {
-                playerController.TakeDamage(15);
-                Debug.Log("Attacking player");
+                playerController.TakeDamage(damageToDeal);
+                Debug.Log("Damage taken");
             }
             else
             {
