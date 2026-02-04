@@ -1,9 +1,9 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Animator))]
-
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     // Private variables
     [Header("Character Stats")]
@@ -11,14 +11,19 @@ public class Character : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
 
-    private bool isDead = false;
+    protected bool isDead = false;
     protected Animator anim;
 
     // Public properties
-
     public float MoveSpeed
     {
-        // read only
+        // Read-only
+        get { return moveSpeed; }
+    }
+
+    public bool IsDead
+    {
+        // Read-only
         get { return isDead; }
     }
 
@@ -37,16 +42,22 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        // Level of protection
+        // Level of Protection
         if (IsDead)
         {
             return;
         }
+
+        CurrentHealth -= amount;
+        Debug.Log($"{gameObject.name} HP is now: {CurrentHealth}");
+
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
     }
 
-    protected void Die()
-    {
-        isDead = true;
-        Debug.Log($"{gameObject.name} has died.");
-    }
+    // Each child object will implement their own death
+    public abstract void Die();
+
 }

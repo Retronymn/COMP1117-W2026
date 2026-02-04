@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerStats
 {
-    //Private fields
+    // Private fields
     private float moveSpeed;
     private int maxHealth;
     private int currentHealth;
 
-    //Public fields
+    // Public properties
     public float MoveSpeed
     {
         get
@@ -36,6 +36,7 @@ public class PlayerStats
         get { return maxHealth; }
         set { maxHealth = value; }
     }
+
     public int CurrentHealth
     {
         get { return currentHealth; }
@@ -46,9 +47,8 @@ public class PlayerStats
         }
     }
 
-    //Constructor
-    //Default constructur - no parameters
-    
+    // Constructor
+    // Default constructor -- No parameters
     public PlayerStats()
     {
         moveSpeed = 10;
